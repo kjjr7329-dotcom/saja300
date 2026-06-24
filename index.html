@@ -21,7 +21,8 @@
   --r:14px;
 }
 html,body{height:100%;background:#EEEAF8;font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--g6)}
-#app{display:flex;flex-direction:column;height:100dvh;max-width:430px;margin:0 auto;background:var(--white);position:relative;overflow:hidden}
+#app{position:relative;height:100dvh;max-width:430px;margin:0 auto;background:var(--white);overflow:hidden}
+#ms{position:absolute;inset:0;display:flex;flex-direction:column;}
 
 /* ── 헤더 ── */
 .hd{background:var(--p);padding:0 20px;padding-top:var(--st);min-height:54px;display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -45,7 +46,7 @@ html,body{height:100%;background:#EEEAF8;font-family:-apple-system,'Apple SD Got
 .chip.on{background:var(--p);border-color:var(--p);color:white}
 
 /* ── 리스트 ── */
-.lst{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 0 calc(var(--nav) + var(--sb) + 8px)}
+.lst{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding:6px 0 calc(var(--nav) + var(--sb) + 8px);min-height:0}
 .si{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--g1);cursor:pointer;transition:background .1s}
 .si:active{background:var(--g0)}
 .si-img{width:44px;height:44px;border-radius:10px;object-fit:cover;background:var(--pl);flex-shrink:0}
