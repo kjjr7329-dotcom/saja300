@@ -200,7 +200,7 @@ html,body{height:100%;background:#EEEAF8;font-family:-apple-system,'Apple SD Got
       <div class="hd-back" onclick="closeDet()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
       </div>
-      <h2 id="dt">상세보기</h2>
+      <div style="flex:1"></div>
       <div style="font-size:20px;cursor:pointer;padding:6px 0 6px 8px" id="dtbm" onclick="togBm()">🤍</div>
     </div>
     <div class="sscr" id="db"></div>
@@ -358,7 +358,6 @@ function renderList(){
 
 function openDet(item){
   cur=item;
-  document.getElementById('dt').textContent=item['한글 독음']||'';
   document.getElementById('dtbm').textContent=isBm(item.ID)?'🧡':'🤍';
   const vid=ytId(item['유튜브_쇼츠_URL']);
   const bsUrl=`${BLOG}?Redirect=Search&jetSearch=${encodeURIComponent(item['한글 독음']||'')}`;
