@@ -293,7 +293,7 @@ const YTCH='https://www.youtube.com/@storyhacker';
 let all=[],filt=[],curF='전체',cur=null;
 let bms=JSON.parse(localStorage.getItem('saja_bm')||'[]');
 
-function driveT(u){if(!u)return null;const m=u.match(/\/d\/([a-zA-Z0-9_-]+)/);return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w120`:null}
+function driveT(u){return './char.png'}
 function ytId(u){if(!u)return null;const m=u.match(/shorts\/([a-zA-Z0-9_-]+)|youtu\.be\/([a-zA-Z0-9_-]+)|[?&]v=([a-zA-Z0-9_-]+)/);return m?(m[1]||m[2]||m[3]):null}
 function lvC(l){return l==1?'lv1':l==2?'lv2':'lv3'}
 function lvL(l){return l==1?'기초':l==2?'중급':'고급'}
@@ -451,6 +451,14 @@ function renderInfo(){
       <a class="ilink yt" href="${YTCH}" target="_blank"><svg viewBox="0 0 24 24" fill="white" width="17" height="17"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2 .3 4.1.3 4.1s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 21.4 12 21.5 12 21.5s4.2 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.1v-2C23.3 9.1 23 7 23 7zm-13.5 8.4V8.6l8 3.4-8 3.4z"/></svg>유튜브 쇼츠 채널</a>
       <a class="ilink blog" href="${BLOG}" target="_blank"><svg viewBox="0 0 24 24" fill="white" width="17" height="17"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>네이버 블로그</a>
     </div>
+    <div class="ic">
+      <h3>📲 홈 화면에 앱 설치하기</h3>
+      <div style="font-size:12px;color:var(--g4);line-height:1.8;margin-bottom:12px">설치하면 앱처럼 바로 열 수 있어요!<br>주소창 없이 전체화면으로 실행돼요 😊</div>
+      <button onclick="doInstall()" style="width:100%;padding:12px;background:var(--p);color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="17" height="17"><path d="M12 2v13M7 11l5 5 5-5"/><path d="M3 18h18v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2z"/></svg>
+        홈 화면에 추가하기
+      </button>
+    </div>
     <div class="ic" style="text-align:center;background:#F0EDFE">
       <div style="font-size:22px;margin-bottom:6px">📺</div>
       <div style="font-size:14px;font-weight:600;color:#6246EA;margin-bottom:4px">매주 새 사자성어 영상이 올라와요!</div>
@@ -501,15 +509,21 @@ window.addEventListener('appinstalled', () => {
 
 function doInstall() {
   if (deferredPrompt) {
-    // Android 크롬: 네이티브 설치 프롬프트
+    // 안드로이드 크롬: 네이티브 설치 팝업
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then(() => {
       deferredPrompt = null;
       closeBanner();
     });
+  } else if (isIOS) {
+    // iOS 안내
+    const msg = isSafari
+      ? '📱 iPhone 설치 방법\n\n① 하단 공유 버튼(□↑) 탭\n② "홈 화면에 추가" 탭\n③ 추가 탭!'
+      : '📱 iPhone 설치 방법\n\n사파리(Safari) 브라우저로 열어주세요!\n주소: saja300.vercel.app\n\n사파리에서 하단 공유 버튼(□↑) → "홈 화면에 추가"';
+    alert(msg);
   } else {
-    // iOS: 안내 모달 표시
-    document.getElementById('safari-modal').classList.add('show');
+    // 안드로이드 기타 브라우저
+    alert('📱 설치 방법\n\n① 브라우저 우측 상단 메뉴(⋮) 탭\n② "홈 화면에 추가" 또는\n   "앱 설치" 탭\n③ 설치 완료!');
   }
 }
 
