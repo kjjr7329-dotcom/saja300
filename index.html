@@ -244,28 +244,73 @@ html,body{height:100%;background:#EEEAF8;font-family:-apple-system,'Apple SD Got
     <span class="ib-close" onclick="closeBanner()">×</span>
   </div>
 
-  <!-- 사파리 설치 안내 모달 -->
+  <!-- 설치 안내 모달 (기기별 자동 전환) -->
   <div class="safari-modal-bg" id="safari-modal" onclick="this.classList.remove('show')">
     <div class="safari-modal" onclick="event.stopPropagation()">
-      <div class="sm-title">📱 홈 화면에 추가하는 방법</div>
-      <div class="sm-sub">사파리(Safari) 브라우저에서만 가능해요</div>
-      <div class="sm-step">
-        <div class="sm-num">1</div>
-        <div class="sm-stxt"><b>사파리</b>로 이 페이지를 열어주세요<br><span style="font-size:11px;color:var(--g3)">주소: saja300.vercel.app</span></div>
+      <div class="sm-title">📱 홈 화면에 추가하기</div>
+      <div class="sm-sub">앱처럼 바로 열 수 있어요 · 무료 · 광고없음</div>
+
+      <!-- 아이폰(사파리) 안내 -->
+      <div id="guide-ios" style="display:none">
+        <div class="sm-step">
+          <div class="sm-num">1</div>
+          <div class="sm-stxt"><b>사파리(Safari)</b>로 열어주세요<br><span style="font-size:11px;color:var(--g3)">saja300.vercel.app</span></div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">2</div>
+          <div class="sm-stxt">하단 가운데 <b>공유 버튼 □↑</b> 탭</div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">3</div>
+          <div class="sm-stxt"><b>홈 화면에 추가</b> 선택</div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">4</div>
+          <div class="sm-stxt">오른쪽 위 <b>추가</b> 탭 → 완료! 🎉</div>
+        </div>
       </div>
-      <div class="sm-step">
-        <div class="sm-num">2</div>
-        <div class="sm-stxt">하단 가운데 <b>공유 버튼 □↑</b> 탭</div>
+
+      <!-- 삼성 브라우저 안내 -->
+      <div id="guide-samsung" style="display:none">
+        <div class="sm-step">
+          <div class="sm-num">1</div>
+          <div class="sm-stxt">카톡 등에서 열었다면 먼저<br><b>우측 아래 메뉴 → 다른 브라우저로 열기</b></div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">2</div>
+          <div class="sm-stxt">삼성 브라우저 <b>우측 하단 메뉴(☰)</b> 탭</div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">3</div>
+          <div class="sm-stxt"><b>현재 웹사이트 추가</b> 탭</div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">4</div>
+          <div class="sm-stxt"><b>홈 화면</b> 선택 → <b>추가</b> 탭 → 완료! 🎉</div>
+        </div>
       </div>
-      <div class="sm-step">
-        <div class="sm-num">3</div>
-        <div class="sm-stxt"><b>홈 화면에 추가</b> 선택</div>
+
+      <!-- 안드로이드 크롬/기타 안내 -->
+      <div id="guide-android" style="display:none">
+        <div class="sm-step">
+          <div class="sm-num">1</div>
+          <div class="sm-stxt"><b>크롬(Chrome)</b>으로 열어주세요<br><span style="font-size:11px;color:var(--g3)">saja300.vercel.app</span></div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">2</div>
+          <div class="sm-stxt">우측 상단 <b>메뉴(⋮)</b> 탭</div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">3</div>
+          <div class="sm-stxt"><b>홈 화면에 추가</b> 또는 <b>앱 설치</b> 탭</div>
+        </div>
+        <div class="sm-step">
+          <div class="sm-num">4</div>
+          <div class="sm-stxt"><b>설치</b> 탭 → 완료! 🎉</div>
+        </div>
       </div>
-      <div class="sm-step">
-        <div class="sm-num">4</div>
-        <div class="sm-stxt">오른쪽 위 <b>추가</b> 탭 → 완료!</div>
-      </div>
-      <button class="sm-close" onclick="document.getElementById('safari-modal').classList.remove('show')">확인했어요</button>
+
+      <button class="sm-close" onclick="document.getElementById('safari-modal').classList.remove('show')">확인했어요!</button>
     </div>
   </div>
 
@@ -459,6 +504,14 @@ function renderInfo(){
         홈 화면에 추가하기
       </button>
     </div>
+    <div class="ic">
+      <h3>💌 지인에게 공유하기</h3>
+      <div style="font-size:12px;color:var(--g4);line-height:1.8;margin-bottom:12px">사자성어 공부하는 친구·가족에게<br>이 앱을 알려주세요!</div>
+      <button onclick="shareApp()" style="width:100%;padding:12px;background:#FEE500;color:#191919;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="2" width="17" height="17"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        지인에게 공유하기
+      </button>
+    </div>
     <div class="ic" style="text-align:center;background:#F0EDFE">
       <div style="font-size:22px;margin-bottom:6px">📺</div>
       <div style="font-size:14px;font-weight:600;color:#6246EA;margin-bottom:4px">매주 새 사자성어 영상이 올라와요!</div>
@@ -507,6 +560,8 @@ window.addEventListener('appinstalled', () => {
   document.getElementById('install-banner').classList.remove('show');
 });
 
+const isSamsung = /SamsungBrowser/i.test(navigator.userAgent);
+
 function doInstall() {
   if (deferredPrompt) {
     // 안드로이드 크롬: 네이티브 설치 팝업
@@ -515,15 +570,32 @@ function doInstall() {
       deferredPrompt = null;
       closeBanner();
     });
-  } else if (isIOS) {
-    // iOS 안내
-    const msg = isSafari
-      ? '📱 iPhone 설치 방법\n\n① 하단 공유 버튼(□↑) 탭\n② "홈 화면에 추가" 탭\n③ 추가 탭!'
-      : '📱 iPhone 설치 방법\n\n사파리(Safari) 브라우저로 열어주세요!\n주소: saja300.vercel.app\n\n사파리에서 하단 공유 버튼(□↑) → "홈 화면에 추가"';
-    alert(msg);
   } else {
-    // 안드로이드 기타 브라우저
-    alert('📱 설치 방법\n\n① 브라우저 우측 상단 메뉴(⋮) 탭\n② "홈 화면에 추가" 또는\n   "앱 설치" 탭\n③ 설치 완료!');
+    // 기기별 맞춤 안내 모달
+    document.getElementById('guide-ios').style.display = isIOS ? '' : 'none';
+    document.getElementById('guide-samsung').style.display = (!isIOS && isSamsung) ? '' : 'none';
+    document.getElementById('guide-android').style.display = (!isIOS && !isSamsung) ? '' : 'none';
+    document.getElementById('safari-modal').classList.add('show');
+  }
+}
+
+// ── 지인에게 공유하기 ──
+async function shareApp() {
+  const shareData = {
+    title: '하루 1분 사자성어 마스터',
+    text: '🐯 사자성어 378개 무료 공부앱! 검색·영상·복습까지 (광고없음)',
+    url: 'https://saja300.vercel.app'
+  };
+  if (navigator.share) {
+    try { await navigator.share(shareData); } catch(e) {}
+  } else {
+    // PC 등 공유 미지원: 링크 복사
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      alert('✅ 앱 주소가 복사됐어요!\n카톡 등에 붙여넣기 하세요.\n\nsaja300.vercel.app');
+    } catch(e) {
+      prompt('아래 주소를 복사해서 공유하세요!', shareData.url);
+    }
   }
 }
 
