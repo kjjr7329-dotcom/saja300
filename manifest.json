@@ -1,21 +1,22 @@
 {
-  "name": "한스포츠 스트링 예약",
-  "short_name": "한스포츠",
-  "description": "테니스 스트링 교체 예약 - 한스포츠",
-  "start_url": "/hansports/",
-  "scope": "/hansports/",
+  "name": "하루 1분 사자성어 마스터",
+  "short_name": "사자성어",
+  "description": "스토리해커의 사자성어 학습 앱 - 377개 사자성어를 무료로 공부하세요",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f5f5",
-  "theme_color": "#1a5c38",
+  "background_color": "#6246EA",
+  "theme_color": "#6246EA",
+  "orientation": "portrait",
+  "lang": "ko",
   "icons": [
     {
-      "src": "/hansports/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/hansports/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
